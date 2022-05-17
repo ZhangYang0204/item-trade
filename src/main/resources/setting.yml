@@ -1,0 +1,7 @@
+setting:
+  language: "default"
+  database:
+    #如果填完的数据库不可用，将采用默认值"jdbc:sqlite:plugins/ItemTrade/data.db"
+    url: "jdbc:sqlite:plugins/ItemTrade/data.db"
+    username: []
+    password: []
