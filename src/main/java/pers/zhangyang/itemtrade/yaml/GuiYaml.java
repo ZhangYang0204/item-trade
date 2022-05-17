@@ -194,8 +194,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_EDIT_MENU_CHANGE_MENU_NAME_LORE() {
-        if (BUTTON_TRADE_MENU_NEXT_TRADE_PAGE_LORE==null){     return null;
-        } return new ArrayList<>(BUTTON_TRADE_MENU_NEXT_TRADE_PAGE_LORE);
+        if (BUTTON_EDIT_MENU_CHANGE_MENU_NAME_LORE==null){     return null;
+        } return new ArrayList<>(BUTTON_EDIT_MENU_CHANGE_MENU_NAME_LORE);
     }
 
     public static GuiYaml getGuiManager() {

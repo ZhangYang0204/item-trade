@@ -57,12 +57,13 @@ public class PlayerCloseEditMenu implements Listener {
         //插入
         try {
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
+            commandService.deleteItemMeta(editMenu.getMenuName(),editMenu.getPageIndex());
             commandService.insert(goodMetaList);
         } catch (SQLException e) {
             e.printStackTrace();
             return;
         }
-
+        RefreshUtil.refreshTradeMenu(null);
 
 
 

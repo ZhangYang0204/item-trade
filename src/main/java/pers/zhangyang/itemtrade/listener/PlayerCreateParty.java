@@ -73,6 +73,7 @@ public class PlayerCreateParty implements Listener {
         MessageUtil.sendMessageTo(player,list );
         backGui(message);
         unregisterSelf();
+        RefreshUtil.refreshTradeMenu(null);
     }
     private void backGui(String newName){
         List<GoodMeta> goodMetaList;

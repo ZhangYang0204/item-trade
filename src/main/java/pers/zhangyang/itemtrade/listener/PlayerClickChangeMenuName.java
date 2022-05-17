@@ -14,6 +14,7 @@ import pers.zhangyang.itemtrade.service.CommandService;
 import pers.zhangyang.itemtrade.service.impl.CommandServiceImpl;
 import pers.zhangyang.itemtrade.util.InvocationUtil;
 import pers.zhangyang.itemtrade.util.MessageUtil;
+import pers.zhangyang.itemtrade.util.RefreshUtil;
 import pers.zhangyang.itemtrade.util.ReplaceUtil;
 import pers.zhangyang.itemtrade.yaml.GuiYaml;
 import pers.zhangyang.itemtrade.yaml.MessageYaml;
@@ -41,6 +42,7 @@ public class PlayerClickChangeMenuName implements Listener {
         player.closeInventory();
         List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_HOW_TO_CHANGE_MENU_NAME();
         MessageUtil.sendMessageTo(player, list);
+
 
     }
 }
