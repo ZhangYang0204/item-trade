@@ -1,3 +1,49 @@
 gui:
   title:
+    tradeMenu: "&b&l&n&f{menu} &b&l&n的交易页 {index}"
+    editMenu: "&b&l&n&f{menu} &b&l&n的编辑页 {index}"
   button:
+    tradeMenuNextTradePage:
+      material: BOOK
+      displayName: "&b&l&n下一页 {next}"
+      lore:
+        - "&e&l点我前往下一页 {next}"
+      customModelData: 0
+
+
+    tradeMenuGlass:
+      material: GLASS_PANE
+      displayName: "&b&l&n分割线"
+      lore:
+        - "&e&l=========="
+      customModelData: 0
+    tradeMenuPreviousTradePage:
+      material: BOOK
+      displayName: "&b&l&n上一页 {pre}"
+      lore:
+        - "&e&l点我前往上一页 {pre}"
+      customModelData: 0
+    editMenuNextEditPage:
+      material: BOOK
+      displayName: "&b&l&n下一页 {next}"
+      lore:
+        - "&e&l点我前往下一页 {next}"
+      customModelData: 0
+    editMenuPreviousEditPage:
+      material: BOOK
+      displayName: "&b&l&n上一页 {pre}"
+      lore:
+        - "&e&l点我前往上一页 {pre}"
+      customModelData: 0
+    editMenuChangeMenuName:
+      material: name_tag
+      displayName: "&b&l&n修改菜单名字"
+      lore:
+        - "&e&l点我修改菜单名字"
+      customModelData: 0
+
+    editMenuGlass:
+      material: GLASS_PANE
+      displayName: "&b&l&n分割线"
+      lore:
+        - "&e&l=========="

@@ -10,6 +10,7 @@ public class PluginServiceImpl implements PluginService {
 
     private final UpdateDao updateDao=new UpdateDao();
 
+    private final GoodDao goodDao=new GoodDao();
     public PluginServiceImpl() throws SQLException {
 
     }
@@ -23,7 +24,7 @@ public class PluginServiceImpl implements PluginService {
     }
     public void initDatabase() throws SQLException {
         updateDao.init();
-
+goodDao.init();
         if (updateDao.select()==null){
             updateDao.insert(ItemTrade.getInstance().getDescription().getVersion());
         }
