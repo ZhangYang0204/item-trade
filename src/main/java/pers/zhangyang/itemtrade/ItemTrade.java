@@ -10,7 +10,9 @@ import pers.zhangyang.itemtrade.command.*;
 import pers.zhangyang.itemtrade.domain.EditMenu;
 import pers.zhangyang.itemtrade.domain.TradeMenu;
 import pers.zhangyang.itemtrade.listener.*;
+import pers.zhangyang.itemtrade.service.CommandService;
 import pers.zhangyang.itemtrade.service.PluginService;
+import pers.zhangyang.itemtrade.service.impl.CommandServiceImpl;
 import pers.zhangyang.itemtrade.service.impl.PluginServiceImpl;
 import pers.zhangyang.itemtrade.util.InvocationUtil;
 import pers.zhangyang.itemtrade.util.MessageUtil;
@@ -103,10 +105,28 @@ public class ItemTrade extends JavaPlugin {
             list.add("tradeMenu");
         }
         if (alias.length()==2&&args[0].equalsIgnoreCase("editMenu")){
-            list.add("名字");
+            try {
+                CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
+                list=commandService.selectDistinctMenuname();
+                if (list.isEmpty()){
+                    list.add("暂无请添加");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return new ArrayList<>();
+            }
         }
         if (alias.length()==2&&args[0].equalsIgnoreCase("tradeMenu")){
-            list.add("名字");
+            try {
+                CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
+                list=commandService.selectDistinctMenuname();
+                if (list.isEmpty()){
+                 list.add("暂无");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return new ArrayList<>();
+            }
         }
 
         if (latest==null||list==null){return  new ArrayList<>();}
