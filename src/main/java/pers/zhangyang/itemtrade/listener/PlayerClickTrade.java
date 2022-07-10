@@ -32,6 +32,10 @@ public class PlayerClickTrade implements Listener {
 
         if (event.getCurrentItem()==null){return;}
 
+        if (!event.getClick().isRightClick()){
+            return;
+        }
+
         Player player= (Player) event.getWhoClicked();
 
         GoodMeta goodMeta=null;

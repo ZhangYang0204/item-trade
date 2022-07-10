@@ -3,6 +3,7 @@ package pers.zhangyang.itemtrade.listener;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -38,8 +39,6 @@ public class InputAfterClickTrade implements Listener {
         Player player=event.getPlayer();
         if (!player.equals(this.player)){return;}
         event.setCancelled(true);
-        CommandService commandService;
-
         String message=event.getMessage();
 
         int amount;
@@ -65,7 +64,6 @@ public class InputAfterClickTrade implements Listener {
         if (goodMeta.getTwoData()!=null) {
             tw=ItemStackUtil.itemStackDeserialize(goodMeta.getTwoData());
             tw.setAmount(amount);
-            System.out.println(tw.getAmount());
         }
         if (goodMeta.getThreeData()!=null) {
             three=ItemStackUtil.itemStackDeserialize(goodMeta.getThreeData());

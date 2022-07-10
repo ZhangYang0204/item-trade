@@ -75,6 +75,7 @@ public class ItemTrade extends JavaPlugin {
         }
 
         Bukkit.getPluginManager().registerEvents(new PlayerClickNextTradePage(),this);
+        Bukkit.getPluginManager().registerEvents(new PlayerLeftClickTrade(),this);
         Bukkit.getPluginManager().registerEvents(new PlayerClickPreviousTradePage(),this);
         Bukkit.getPluginManager().registerEvents(new PlayerCloseEditMenu(),this);
         Bukkit.getPluginManager().registerEvents(new PlayerClickTrade(),this);
