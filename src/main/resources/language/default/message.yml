@@ -56,7 +56,9 @@ message:
       - "&b&l成功更改菜单名字"
 
     failureTradeBecauseNotMaterial:
-      - "&c&l材料不足,无法交易"
+      - "&c&l材料不足,无法交易,缺少第{item}个物品"
+    howToTrade:
+      - "&c&l输入数量，cancel取消"
 
     howToChangMenuName:
       - "&c&l输入新名字，cancel取消"

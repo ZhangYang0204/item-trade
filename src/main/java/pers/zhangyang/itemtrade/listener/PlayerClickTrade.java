@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import pers.zhangyang.itemtrade.ItemTrade;
 import pers.zhangyang.itemtrade.domain.TradeMenu;
 import pers.zhangyang.itemtrade.meta.GoodMeta;
 import pers.zhangyang.itemtrade.util.InventoryUtil;
@@ -40,44 +41,10 @@ public class PlayerClickTrade implements Listener {
                 break;
             }
         }
-        ItemStack dataS = ItemStackUtil.itemStackDeserialize(goodMeta.getData());
 
-        ItemStack tw=null;ItemStack three=null;ItemStack f=null;
-        if (goodMeta.getTwoData()!=null) {
-        tw=ItemStackUtil.itemStackDeserialize(goodMeta.getTwoData());
-        }
-        if (goodMeta.getThreeData()!=null) {
-       three=ItemStackUtil.itemStackDeserialize(goodMeta.getThreeData());
-        }
-        if (goodMeta.getFourData()!=null) {
-          f = ItemStackUtil.itemStackDeserialize(goodMeta.getFourData());
-        }
-
-        List<ItemStack> itl=new ArrayList<>();
-        itl.add(tw);
-        itl.add(three);
-        itl.add(f);
-        if(InventoryUtil.contains(itl,player.getInventory())){
-            if (tw!=null) {
-            InventoryUtil.removeItem(player.getInventory(),tw,tw.getAmount());
-            }if (three!=null) {
-            InventoryUtil.removeItem(player.getInventory(),three,three.getAmount());
-            }if (f!=null) {
-                InventoryUtil.removeItem(player.getInventory(), f, f.getAmount());
-            }
-            for (ItemStack res:player.getInventory().addItem(dataS).values()){
-                World w= player.getWorld();
-                w.dropItem(player.getLocation(),res);
-
-            }
-
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_TRADE();
-            MessageUtil.sendMessageTo(player, list);
-        }else {
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_TRADE_BECAUSE_NOT_MATERIAL();
-            MessageUtil.sendMessageTo(player, list);
-
-        }
-
+        Bukkit.getPluginManager().registerEvents( new InputAfterClickTrade(player,saveMenu,goodMeta), ItemTrade.getInstance());
+        player.closeInventory();
+        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_HOW_TO_TRADE();
+        MessageUtil.sendMessageTo(player, list);
     }
 }

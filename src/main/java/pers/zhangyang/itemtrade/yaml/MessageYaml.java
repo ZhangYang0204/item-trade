@@ -30,6 +30,7 @@ public class MessageYaml extends YamlManagerBase {
 
     private List<String> CHAT_FAILURE_CHANGE_MENU_NAME_BECAUSE_DUPLICATE_NAME;
     private List<String> CHAT_HOW_TO_CHANGE_MENU_NAME;
+    private List<String> CHAT_HOW_TO_TRADE;
 /*
     private List<String> CHAT_SUCCESS_EDIT_MENU;
 
@@ -47,6 +48,7 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_HOW_TO_CHANGE_MENU_NAME=getStringList("message.chat.howToChangMenuName",false);
         CHAT_FAILURE_TRADE_BECAUSE_NOT_MATERIAL=getStringList("message.chat.failureTradeBecauseNotMaterial",false);
 
+        CHAT_HOW_TO_TRADE=getStringList("message.chat.howToTrade",false);
                 CHAT_SUCCESS_CHANGE_MENU_NAME =getStringList("message.chat.successChangeMenuName",false);
 
         CHAT_NOT_PLAYER=getStringList("message.chat.notPlayer",false);
@@ -76,6 +78,13 @@ public class MessageYaml extends YamlManagerBase {
         if (CHAT_SUCCESS_EDIT_MENU==null){     return null;
         }return new ArrayList<>(CHAT_SUCCESS_EDIT_MENU);
     }*/
+
+    public List<String> getCHAT_HOW_TO_TRADE() {
+        if (CHAT_HOW_TO_TRADE == null) {
+            return null;
+        }
+        return new ArrayList<>(CHAT_HOW_TO_TRADE);
+    }
 
     public List<String> getCHAT_FAILURE_CHANGE_MENU_NAME_BECAUSE_DUPLICATE_NAME() {
         if (CHAT_FAILURE_CHANGE_MENU_NAME_BECAUSE_DUPLICATE_NAME == null) {

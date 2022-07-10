@@ -6,13 +6,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
+import pers.zhangyang.itemtrade.yaml.MessageYaml;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class InventoryUtil {
 
@@ -80,8 +77,6 @@ public class InventoryUtil {
             ItemStack itemStack2=inventory.getItem(i);
             if (itemStack2==null||itemStack2.getType().equals(Material.AIR)) continue;
 
-
-
             if (itemStack.getItemMeta().getDisplayName().equals(itemStack2.getItemMeta().getDisplayName())
                     && Objects.equals(itemStack.getItemMeta().getLore(),itemStack2.getItemMeta().getLore())&&itemStack.getType().equals(itemStack2.getType()))
             {
@@ -91,7 +86,12 @@ public class InventoryUtil {
         return number;
     }
 
-    public static boolean contains(List<ItemStack> il,Inventory iv){
+    public static boolean contains(List<ItemStack> il,Inventory iv,Player player){
+        List<ItemStack> itemStackListB=new ArrayList<>();
+        for (ItemStack itemStack:il){
+            if (itemStack==null){itemStackListB.add(null);continue;}
+            itemStackListB.add(itemStack.clone());
+        }
         List<ItemStack> itemStackList=new ArrayList<>();
         for (ItemStack i:il){
             if (i==null){continue;}
@@ -100,17 +100,24 @@ public class InventoryUtil {
         ItemStack[] its=iv.getStorageContents();
         Inventory inventory=Bukkit.createInventory(null, InventoryType.PLAYER);
         inventory.setStorageContents(its);
-
-
-        Iterator it=itemStackList.iterator();
+        Iterator<ItemStack> it=itemStackList.iterator();
         while (it.hasNext()){
-            ItemStack itemStackListIt=(ItemStack) it.next();
+            ItemStack itemStackListIt=it.next();
             if (computeItemHave(itemStackListIt,inventory)>=itemStackListIt.getAmount()){
                 removeItem(inventory,itemStackListIt,itemStackListIt.getAmount());
                 it.remove();
             }
         }
         if (!itemStackList.isEmpty()){
+            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_TRADE_BECAUSE_NOT_MATERIAL();
+            if (list!=null) {
+                for (int s=0;s<itemStackListB.size();s++){
+                    if (itemStackList.get(0).isSimilar(itemStackListB.get(s))){
+                        ReplaceUtil.replace(list, Collections.singletonMap("{item}",String.valueOf(s+1)));
+                    }
+                }
+            }
+            MessageUtil.sendMessageTo(player, list);
             return false;
         }
         return true;
